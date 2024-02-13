@@ -1,0 +1,48 @@
+{% extends "blog/base.html" %}
+{% load bulma_tags %}
+{% block title %}Share this post{% endblock %}
+{% block hero_title %}
+{% if sent %}
+<h1 class="title is-2 has-text-centered">
+    <em>{{ post.title }}</em> shared
+</h1>
+<p class="subtitle has-text-centered">Post successfully shared to inbox</p>
+{% else %}
+<h1 class="title is-2 has-text-centered">
+    Share <em>{{ post.title }} via e-mail
+</h1>
+<p class="subtitle has-text-centered">Send this post to a friend's inbox</p>
+{% endif %}
+{% endblock %}
+{% block content %}
+{% if sent %}
+<div class="columns">
+    <div class="column is-three-fifths">
+        <div class="box">
+            <div class="message is-success">
+                <div class="message-body">
+                    <p class="indented">An e-mail containing a link to <em>{{ post.title }}</em> along with your personal message have been
+                    delivered to the inbox at <strong>{{ form.cleaned_data.to }}</strong>.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% else %}
+<div class="columns">
+    <div class="column is-three-fifths">
+        <div class="box">
+            <form method="post">
+                {% csrf_token %}
+                {{ form|bulma }}
+                <div class="field">
+                    <div class="control">
+                        <button type="submit" class="button is-info is-block is-fullwidth">Share</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endif %}
+{% endblock %}
