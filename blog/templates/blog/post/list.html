@@ -9,7 +9,7 @@
 {% for post in posts %}
 <div class="card">
     <div class="card-header">
-        <a class="card-header-title is-size-4" href="{% url 'blog:post_detail' post.id %}">
+        <a class="card-header-title is-size-4" href="{{ post.get_absolute_url }}">
             {{ post.title }}
         </a>
         <p class="has-text-weight-light is-italic subtitle is-size-7 mt-2 mr-2">
