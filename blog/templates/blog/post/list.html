@@ -1,5 +1,5 @@
 {% extends "blog/base.html" %}
-{% load static bulma_tags %}
+{% load static bulma_tags blog_tags %}
 {% block title %}My Blog{% endblock %}
 
 {% block hero_title %}
@@ -21,10 +21,11 @@
             <span class="tag is-dark">Test Tag</span>
         </div>
         <div class="content">
-            {{ post.body|truncatewords_html:30 }}
+            {{ post.body|indented|truncatewords_html:30 }}
         </div>
     </div>
 </div>
 <br />
 {% endfor %}
+{% include "blog/_pagination.html" with page=posts %}
 {% endblock %}
