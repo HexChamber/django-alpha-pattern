@@ -1,0 +1,30 @@
+{% extends "blog/base.html" %}
+{% load static bulma_tags %}
+{% block title %}My Blog{% endblock %}
+
+{% block hero_title %}
+<h1 class="title">My Blog</h1>
+{% endblock %}
+{% block content %}
+{% for post in posts %}
+<div class="card">
+    <div class="card-header">
+        <a class="card-header-title is-size-4" href="{% url 'blog:post_detail' post.id %}">
+            {{ post.title }}
+        </a>
+        <p class="has-text-weight-light is-italic subtitle is-size-7 mt-2 mr-2">
+            Published {{ post.publish }} by {{ post.author.username }}
+        </p>
+    </div>
+    <div class="card-content">
+        <div class="tags is-right">
+            <span class="tag is-dark">Test Tag</span>
+        </div>
+        <div class="content">
+            {{ post.body|truncatewords_html:30 }}
+        </div>
+    </div>
+</div>
+<br />
+{% endfor %}
+{% endblock %}

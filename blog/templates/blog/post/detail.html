@@ -1,0 +1,47 @@
+{% extends "blog/base.html" %}
+{% load bulma_tags %}
+{% block title %}{{ post.title }}{% endblock %}
+{% block hero_title %}
+<h1 class="title is-2 has-text-centered">{{ post.title }}</h1>
+<p class="subtitle has-text-centered is-italic">Published {{ post.publish }} by {{ post.author.username }}</p>
+{% endblock %}
+{% block content %}
+    <div class="box">
+        <div class="block content">
+            {{ post.body }}
+        </div>
+        <div class="columns is-centered">
+            <div class="column is-three-fifths">
+                <div class="buttons is-centered">
+                    <a class="button is-block is-fullwidth is-info" href="#">Share this Post</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="columns">
+        <div class="column is-four_fifths">
+            <h4 class="title has-text-centered has-text-weight-bold">
+                No comments
+            </h4>
+
+            <div class="card has-background-primary-dark m-auto">
+                <div class="card-header">
+                    <div class="card-header-title">
+                        Test Commenter
+                    </div>
+                    <p class="subtitle has-text-weight-light is-italic is-size-7">@12:04AM-2024/03/02</p>
+                </div>
+                <div class="card-content">
+                    <p class="indented">This is a test sample comment to act as a Placeholder for frontend design.</p>
+                </div>
+            </div>
+            <br />
+        </div>
+    </div>
+{% endblock %}
+{% block sidenav %}
+<h4 class="menu-label">Similar posts</h4>
+<ul class="menu-list">
+    <li><a href="#">Not a real post</a></li>
+</ul>
+{% endblock %}

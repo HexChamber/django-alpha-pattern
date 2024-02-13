@@ -1,0 +1,16 @@
+{
+  "name": "alpha-pattern",
+  "version": "1.0.0",
+  "description": "This is the [b]first[/b] of the four **Primary Application Patterns** I am building out using' tthe Django Web Framework. Each of them demonstrates varying degrees of functionality, specific features depending on their intended audience and usage.",
+  "main": "index.js",
+  "scripts": {
+    "css-build": "node-sass --omit-source-map-url sass/style.scss blog/static/css/style.css"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "bulma": "^0.9.4",
+    "node-sass": "^9.0.0"
+  }
+}

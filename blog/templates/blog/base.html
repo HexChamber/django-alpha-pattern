@@ -1,0 +1,101 @@
+{% extends "bulma/base.html" %}
+{% load static bulma_tags %}
+{% block css %}
+    {% font_awesome %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+    {% block extra_css %}
+    <style>
+    .indented {
+        text-indent: 30px;
+    }
+    </style>
+    {% endblock %}
+{% endblock %}
+{% block header %}
+{% endblock %}
+{% block hero %}
+<section class="hero is-primary is-small">
+    <div class="hero-head">
+        <nav class="navbar">
+            <div class="container">
+                <div class="navbar-brand">
+                    <a class="navbar-item" href="{% url 'blog:post_list' %}">
+                        <span>AlphaPattern Blog</span>
+                    </a>
+                    <div class="navbar-burger" data-target="navbarMenu">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                </div>
+                <div class="navbar-menu" id="navbarMenu">
+                    <div class="navbar-end">
+                        <a class="navbar-item" href="{% url 'blog:post_list' %}">Home</a>
+                        <div class="navbar-item has-dropdown is-hoverable">
+                            <a class="navbar-link">Topics</a>
+                            <div class="navbar-dropdown">
+                                <a class="navbar-item" href="#">Topic</a>
+                                <a class="navbar-item" href="#">Topic 2</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </div>
+
+    <div class="hero-foot">
+        <div class="container">
+            <div class="content has-text-centered">
+                {% block hero_title %}
+                {% endblock %}
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+{% block content_area %}
+<section class="section">
+    <div class="container">
+        <div class="columns is-vcentered">
+            <div class="column is-9">
+                {% block content %}
+                {% endblock %}
+            </div>
+            <div class="column is-3">
+                <aside class="menu box">
+                    {% block sidenav %}
+                    {% endblock %}
+                </aside>
+                <div class="buttons">
+                    <a class="button is-block is-fullwidth is-light is-outlined" href="#">Subscribe to RSS Feed</a>
+                    <a class="button is-block is-fullwidth is-primary" href="#">Join the Newsletter</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+{% block modal %}
+{% endblock %}
+{% block footer %}
+<footer class="footer">
+    <div class="container">
+        <div class="content has-text-centered">
+            <p>
+                <strong>AlphaPattern</strong> built by <a href="https://github.com/HexChamber/">HexChamber DEV</a>.
+            </p>
+            <p>
+                Source code is licensed by <a href="https://opensource.org/licenses/mit-license.php">MIT License</a>.
+            </p>
+            <p>
+                &copy; 2024
+            </p>
+        </div>
+    </div>
+</footer>
+{% endblock %}
+{% block javascrip %}
+{% block extra_javascript %}{% endblock %}
+{% endblock %}
+
