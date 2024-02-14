@@ -1,0 +1,12 @@
+{% load bulma_tags %}
+<div class="box">
+    <form method="post" action="{% url 'blog:post_comment' post.id %}">
+        {% csrf_token %}
+        {{ form|bulma }}
+        <div class="field is-right">
+            <div class="control">
+                <button type="submit" class="button is-primary">Add comment</button>
+            </div>
+        </div>
+    </form>
+</div>

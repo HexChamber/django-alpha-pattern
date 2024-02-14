@@ -1,0 +1,15 @@
+{% extends "blog/base.html" %}
+{% load bulma_tags %}
+{% block title %}Add a comment{% endblock %}
+{% block hero_title %}
+<h1 class="title is-2 has-text-centered">
+    Comment on <em>{{ post.title }}</em>
+</h1>
+{% endblock %}
+{% block content %}
+<div class="columns">
+    <div class="column is-three-fifths">
+        {% include "blog/post/includes/comment_form.html" %}
+    </div>
+</div>
+{% endblock %}

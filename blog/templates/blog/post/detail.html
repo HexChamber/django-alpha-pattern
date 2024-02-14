@@ -20,22 +20,41 @@
     </div>
     <div class="columns">
         <div class="column is-four_fifths">
+            {% with comments.count as total_comments %}
             <h4 class="title has-text-centered has-text-weight-bold">
-                No comments
+                {{ total_comments }} comment{{ total_comments|pluralize }}
             </h4>
-
-            <div class="card has-background-primary-dark m-auto">
+            {% endwith %}
+            {% for comment in comments %}
+            <div class="card has-background-{% cycle 'primary-dark' 'primary' %} m-auto">
                 <div class="card-header">
                     <div class="card-header-title">
-                        Test Commenter
+                        {{ comment.name }}
                     </div>
-                    <p class="subtitle has-text-weight-light is-italic is-size-7">@12:04AM-2024/03/02</p>
+                    <p class="subtitle has-text-weight-light is-italic is-size-7">@{{ comment.created }}</p>
                 </div>
                 <div class="card-content">
-                    <p class="indented">This is a test sample comment to act as a Placeholder for frontend design.</p>
+                    {{ comment.body|indented }}
                 </div>
             </div>
+            <br>
+            {% empty %}
+            <div class="message is-warning is-light">
+                <div class="message-body">
+                    <div class="content">
+                        <p class="indented is-italic">There not yet any comments made for this post.</p>
+                        <p>Be the first and comment with the form below!</p>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+            {% resetcycle %}
             <br />
+            <div class="columns">
+                <div class="column is-two-thirds">
+                    {% include "blog/post/includes/comment_form.html" %}
+                </div>
+            </div>
         </div>
     </div>
 {% endblock %}
