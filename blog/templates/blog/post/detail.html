@@ -61,6 +61,8 @@
 {% block sidenav %}
 <h4 class="menu-label">Similar posts</h4>
 <ul class="menu-list">
-    <li><a href="#">Not a real post</a></li>
+    {% for post in similar_posts %}
+    <li><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></li>
+    {% endfor %}
 </ul>
 {% endblock %}

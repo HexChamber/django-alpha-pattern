@@ -4,6 +4,9 @@
 
 {% block hero_title %}
 <h1 class="title">My Blog</h1>
+{% if tag %}
+<h3 class="subtitle is-size-5 has-text-weight-light">Posts for tag: <span class="tag is-light">{{ tag.name }}</span></h3>
+{% endif %}
 {% endblock %}
 {% block content %}
 {% for post in posts %}
@@ -18,7 +21,11 @@
     </div>
     <div class="card-content">
         <div class="tags is-right">
-            <span class="tag is-dark">Test Tag</span>
+            {% for tag in post.tags.all %}
+            <a class="tag is-{% cycle 'primary' 'dark' 'link' 'dark' %}" href="{% url 'blog:post_list_by_tag' tag.slug %}">{{ tag.name }}</a>
+            {% empty %}
+            <div class="block"></div>
+            {% endfor %}
         </div>
         <div class="content">
             {{ post.body|indented|truncatewords_html:30 }}
