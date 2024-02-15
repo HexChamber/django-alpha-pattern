@@ -71,6 +71,17 @@
                 </aside>
                 <hr>
                 <aside class="menu box">
+                    {% get_most_commented_posts as most_commented %}
+                    <h4 class="menu-label">Popular</h4>
+                    <ul class="menu-list">
+                        {% for post in most_commented %}
+                        <li>
+                            <a href="{{ post.get_absolute_url }}">{{ post.title }}</a>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </aside>
+                <aside class="menu box">
                     {% block sidenav %}
                     {% endblock %}
                 </aside>
