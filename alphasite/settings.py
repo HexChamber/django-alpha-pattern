@@ -29,7 +29,7 @@ SECRET_KEY = 'django-insecure-jz&z(#g^4&9xj89zj)6985(tc_=j8am3=6_x4nf%n#(16gy&lr
 DEBUG = True
 
 ALLOWED_HOSTS = []
-
+SITE_ID = 1
 
 # Application definition
 
@@ -40,6 +40,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
+    'django.contrib.sitemaps',
     'blog.apps.BlogConfig',
     'bulma',
     'taggit',
