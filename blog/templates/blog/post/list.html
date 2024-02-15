@@ -28,7 +28,7 @@
             {% endfor %}
         </div>
         <div class="content">
-            {{ post.body|indented|truncatewords_html:30 }}
+            {{ post.body|indented|markdown|truncatewords_html:30 }}
         </div>
     </div>
 </div>
