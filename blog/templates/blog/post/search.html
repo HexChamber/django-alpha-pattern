@@ -1,0 +1,72 @@
+{% extends "blog/base.html" %}
+{% load blog_tags bulma_tags %}
+{% block title %}Search{% endblock %}
+{% block hero_title %}
+{% if query %}
+<h1 class="title is-2 has-text-centered">
+    Results for <em>{{ query }}</em>
+</h1>
+<p class="subtitle is-italic has-text-weight-light has-text-centered">
+    {% with results.count as total_results %}
+    Found {{ total_results }} result{{ total_results|pluralize }}
+    {% endwith %}
+</p>
+{% else %}
+<h1 class="title is-2 has-text-centered">
+    Search for posts
+</h1>
+{% endif %}
+{% endblock %}
+{% block content %}
+<div class="columns">
+    <div class="column is-four-fifths">
+        {% if query %}
+            {% for post in results %}
+            <article class="media box">
+                <div class="media-content">
+                    <div class="content">
+                        <p>
+                            <a class="has-text-weight-semibold" href="{{ post.get_absolute_url }}">{{ post.title }}</a>
+                        </p>
+                        <p>
+                            <div class="tags is-right">
+                                {% for tag in post.tags.all %}
+                                <a class="tag is-{% cycle 'primary' 'dark' 'link' 'dark' %}" href="{% url 'blog:post_list_by_tag' tag.slug %}">{{ tag.name }}</a>
+                                {% endfor %}
+                                {% resetcycle %}
+                            </div>
+                        </p>
+                    </div>
+                </div>
+            </article>
+            {% empty %}
+            <div class="message is-warning">
+                <div class="message-body">
+                    <div class="content">
+                        <p class="indented">Sorry, no results were found that match your query.</p>
+                        <p class="is-italic">Please refine your search terms and try again.</p>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+            {% else %}
+            <div class="box">
+                <form method="get">
+                    {% csrf_token %}
+                    <div class="field has-addons">
+                        <div class="control">
+                            {{ form.query|bulma_inline }}
+                        </div>
+                        <div class="control">
+                            <button type="submit" type="submit" class="button is-info">
+                                Search
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}
+
