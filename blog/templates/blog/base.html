@@ -1,5 +1,5 @@
 {% extends "bulma/base.html" %}
-{% load static bulma_tags %}
+{% load static bulma_tags blog_tags %}
 {% block css %}
     {% font_awesome %}
     <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
@@ -63,6 +63,13 @@
                 {% endblock %}
             </div>
             <div class="column is-3">
+                <div class="block box">
+                    <p class="is-italic">This site now home to <strong>{% total_posts %}</strong> posts so far.</p>
+                </div>
+                <aside class="menu box">
+                    {% show_latest_posts %}
+                </aside>
+                <hr>
                 <aside class="menu box">
                     {% block sidenav %}
                     {% endblock %}
