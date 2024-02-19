@@ -16,7 +16,7 @@ from dotenv import load_dotenv, find_dotenv
 load_dotenv(find_dotenv())
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
 
 # Quick-start development settings - unsuitable for production
@@ -26,7 +26,6 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-jz&z(#g^4&9xj89zj)6985(tc_=j8am3=6_x4nf%n#(16gy&lr'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
 
 ALLOWED_HOSTS = []
 SITE_ID = 1
@@ -88,16 +87,6 @@ WSGI_APPLICATION = 'alphasite.wsgi.application'
 #         'NAME': BASE_DIR / 'db.sqlite3',
 #     }
 # }
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'alphasite',
-        'USER': 'alpha',
-        'PASSWORD': os.environ.get('DATABASE_PASSWORD'),
-        'HOST': '127.0.0.1',
-        'PORT': 5432
-    }
-}
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
