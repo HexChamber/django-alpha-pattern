@@ -23,4 +23,5 @@ six==1.16.0
 sqlparse==0.4.4
 stack-data==0.6.3
 traitlets==5.14.1
+uWSGI==2.0.24
 wcwidth==0.2.13

@@ -1,0 +1,42 @@
+services:
+    db:
+        image: postgres:16.0
+        restart: always
+        volumes:
+            - ./data/db:/Users/glizzok/Servers/dbs
+        environment:
+            - POSTGRES_DB=postgres
+            - POSTGRES_USER=postgres
+            - POSTGRES_PASSWORD=postgres
+    web:
+        build: .
+        # command: ["./wait-for-it.sh", "db:5432", "--",
+        #           "python", "/code/src/manage.py", "runserver",
+        #           "0.0.0.0:8000"]
+        command: [
+            "./wait-for-it.sh",
+            "db:5432",
+            "--",
+            "uwsgi",
+            "--ini",
+            "/code/config/uwsgi/uwsgi.ini"
+            ]
+        restart: always
+        volumes:
+            - .:/code
+        environment:
+            - DJANGO_SETTINGS_MODULE=alphasite.settings.prod
+            - POSTGRES_DB=postgres
+            - POSTGRES_USER=postgres
+            - POSTGRES_PASSWORD=postgres
+        depends_on:
+            - db
+    nginx:
+        image: nginx:1.23.1
+        restart: always
+        volumes:
+            - ./config/nginx:/etc/nginx/templates
+            - .:/code
+        ports:
+            - "80:80"
+            - "443:443"
